@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://crud-task-oh51.onrender.com",
     credentials: true
   })
 );
