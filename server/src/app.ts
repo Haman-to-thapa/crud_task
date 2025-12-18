@@ -11,7 +11,6 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://crud-task-1-mfom.onrender.com"
 ];
-
 app.use(
   cors({
     origin: (origin, callback) => {
