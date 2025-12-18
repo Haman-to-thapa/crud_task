@@ -6,7 +6,7 @@ export const httpServer = http.createServer(app);
 
 export const io = new Server(httpServer, {
   cors: {
-    origin: "https://crud-task-oh51.onrender.com",
+    origin: "https://crud-task-1-mfom.onrender.com",
     credentials: true
   }
 });

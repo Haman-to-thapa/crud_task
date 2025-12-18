@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(
   cors({
-    origin: "https://crud-task-oh51.onrender.com",
+    origin: "https://crud-task-1-mfom.onrender.com",
     credentials: true
   })
 );
