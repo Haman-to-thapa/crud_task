@@ -7,12 +7,26 @@ import { errorHandler } from "./middlewares/error.middleware";
 
 export const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://crud-task-1-mfom.onrender.com"
+];
+
 app.use(
   cors({
-    origin: "https://crud-task-1-mfom.onrender.com",
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true
   })
 );
+
+app.options("*", cors());
 
 app.use(express.json());
 app.use(cookieParser());

@@ -4,10 +4,16 @@ import { app } from "./app";
 
 export const httpServer = http.createServer(app);
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://crud-task-1-mfom.onrender.com"
+];
+
 export const io = new Server(httpServer, {
   cors: {
-    origin: "https://crud-task-1-mfom.onrender.com",
-    credentials: true
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST"]
   }
 });
 
