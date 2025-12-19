@@ -11,14 +11,25 @@ const Login: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
+    setValue,
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema)
   });
 
+  // Pre-fill the form with test credentials
+  const useTestCredentials = () => {
+    setValue("email", "heman@test.com");
+    setValue("password", "123456");
+  };
+
   const onSubmit = async (data: LoginFormData) => {
-    await loginUser(data);
-    navigate("/");
+    try {
+      await loginUser(data);
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
@@ -27,6 +38,28 @@ const Login: FC = () => {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
           <p className="text-gray-600 mt-2">Sign in to your account</p>
+        </div>
+
+        {/* Test credentials notice */}
+        <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <p className="text-sm font-medium text-blue-800 mb-1">Test Credentials</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-blue-700">
+                <span className="font-medium">Email:</span> heman@test.com
+              </p>
+              <p className="text-sm text-blue-700">
+                <span className="font-medium">Password:</span> 123456
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={useTestCredentials}
+              className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
+            >
+              Auto-fill
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -71,13 +104,7 @@ const Login: FC = () => {
 
         <div className="mt-8 text-center">
           <p className="text-gray-600 text-sm">
-            Don't have an account?{" "}
-            <button
-              onClick={() => navigate("/register")}
-              className="text-blue-600 hover:text-blue-800 font-medium"
-            >
-              Sign up
-            </button>
+            Registration is currently disabled. Use test credentials above.
           </p>
         </div>
       </div>

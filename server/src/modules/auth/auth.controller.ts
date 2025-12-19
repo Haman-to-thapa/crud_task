@@ -26,11 +26,10 @@ export const login = async (req: Request, res: Response) => {
   res
   .cookie("token", token, {
     httpOnly: true,
-    sameSite: "none",  // Changed from "lax" to "none"
-    secure: true,      // Changed from false to true
+    sameSite: "none",  
+    secure: true,    
     maxAge: 7 * 24 * 60 * 60 * 1000,
     path: "/",
-    // domain: ".onrender.com" // Optional: Try if above doesn't work
   })
   .json({
     message: "Login successful",
@@ -39,14 +38,14 @@ export const login = async (req: Request, res: Response) => {
       name: user.name,
       email: user.email
     },
-    token // Keep sending token in response for localStorage fallback
+    token 
   });
 };
 
 export const logout = (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "none",  // Must match login settings
+    sameSite: "none",  
     secure: true,
     path: "/"
   });
