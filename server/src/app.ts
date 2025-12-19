@@ -4,9 +4,6 @@ import cookieParser from "cookie-parser";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { taskRoutes } from "./modules/task/task.routes";
 import { errorHandler } from "./middlewares/error.middleware"; 
-import dotenv from 'dotenv'
-
-dotenv.config()
 
 export const app = express();
 
