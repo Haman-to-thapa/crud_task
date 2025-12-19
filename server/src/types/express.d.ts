@@ -1,21 +1,9 @@
-import { Request } from 'express';
+import "express";
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: {
-        id: string;
-        email: string;
-      };
-    }
+declare module "express-serve-static-core" {
+  interface Request {
+    cookies?: {
+      token?: string;
+    };
   }
-}
-
-export interface AuthRequest extends Request {
-  cookies: {
-    token?: string;
-  };
-  body: any;
-  params: any;
-  query: any;
 }
