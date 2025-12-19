@@ -6,7 +6,7 @@ export const httpServer = http.createServer(app);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://crud-task-1-mfom.onrender.com" 
+  "https://crud-task-1-mp5j.onrender.com" 
 ];
 
 export const io = new Server(httpServer, {

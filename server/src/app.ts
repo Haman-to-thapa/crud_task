@@ -9,7 +9,7 @@ export const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://crud-task-1-mfom.onrender.com"
+  "https://crud-task-1-mp5j.onrender.com"
 ];
 app.use(
   cors({
