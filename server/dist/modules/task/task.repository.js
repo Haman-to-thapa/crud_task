@@ -26,4 +26,3 @@ const getFilteredTasksRepo = async (filter, sort) => {
     return task_model_1.Task.find(filter).sort(sort);
 };
 exports.getFilteredTasksRepo = getFilteredTasksRepo;
-//# sourceMappingURL=task.repository.js.map

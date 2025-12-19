@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Task = exports.TaskStatus = exports.TaskPriority = void 0;
+// src/modules/task/task.model.ts
 const mongoose_1 = require("mongoose");
 var TaskPriority;
 (function (TaskPriority) {
@@ -38,8 +39,8 @@ const taskSchema = new mongoose_1.Schema({
     assignedToId: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: "User",
-        required: false,
+        // REMOVE 'required: true' or change to false
+        required: false, // Make it optional
     },
 }, { timestamps: true });
 exports.Task = (0, mongoose_1.model)("Task", taskSchema);
-//# sourceMappingURL=task.model.js.map

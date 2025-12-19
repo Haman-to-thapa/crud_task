@@ -8,4 +8,3 @@ const userSchema = new mongoose_1.Schema({
     password: { type: String, required: true }
 }, { timestamps: true });
 exports.User = (0, mongoose_1.model)("User", userSchema);
-//# sourceMappingURL=user.model.js.map

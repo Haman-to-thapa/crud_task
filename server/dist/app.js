@@ -35,4 +35,3 @@ exports.app.use((0, cookie_parser_1.default)());
 exports.app.use("/api/auth", auth_routes_1.authRoutes);
 exports.app.use("/api/tasks", task_routes_1.taskRoutes);
 exports.app.use(error_middleware_1.errorHandler);
-//# sourceMappingURL=app.js.map

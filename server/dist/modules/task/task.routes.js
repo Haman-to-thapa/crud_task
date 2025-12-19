@@ -12,4 +12,3 @@ exports.taskRoutes.get("/", task_controller_1.getTasksHandler);
 exports.taskRoutes.patch("/:id", task_controller_1.updateTaskHandler);
 exports.taskRoutes.delete("/:id", task_controller_1.deleteTaskHandler);
 exports.taskRoutes.get("/dashboard", task_controller_2.getDashboardHandler);
-//# sourceMappingURL=task.routes.js.map
