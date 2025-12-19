@@ -14,7 +14,7 @@ export const requireAuth = (
   res: Response,
   next: NextFunction
 ) => {
-  // Check for token in cookies first, then Authorization header
+
   const token = req.cookies?.token || 
                 req.headers.authorization?.replace('Bearer ', '');
 
@@ -26,17 +26,14 @@ export const requireAuth = (
   }
 
   try {
-    // Verify token and cast to JwtPayload
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
     
-    // Ensure userId exists in payload
     if (!decoded.userId) {
       return res.status(401).json({ 
         message: "Invalid token - Missing user ID" 
       });
     }
     
-    // Attach userId to request
     req.userId = decoded.userId;
     console.log(`Authenticated user: ${decoded.userId}`);
     next();
