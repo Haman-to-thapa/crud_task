@@ -7,12 +7,22 @@ import { errorHandler } from "./middlewares/error.middleware";
 
 export const app = express();
 
-app.use(cors({
-  origin: ['https://crud-task-1-mp5j.onrender.com', 'http://localhost:5173'],
-  credentials: true, // Allow cookies to be sent
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
+const corsOptions = {
+  origin: [
+    'https://crud-task-1-mp5j.onrender.com', // Your frontend URL
+    'http://localhost:3000', // For local development
+  ],
+  credentials: true, // Allow cookies/auth headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['set-cookie'] // Expose cookies to frontend
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Handle preflight requests explicitly
+app.options('*', cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
