@@ -5,7 +5,7 @@ import { type Task } from "../types/task";
 
 export const getTasks = async (): Promise<Task[]> => {
   const res = await api.get("/tasks");
-  return res.data.tasks || res.data; // Handle both response formats
+  return res.data.tasks || res.data; 
 };
 
 export const getDashboardTasks = async (): Promise<{
@@ -21,7 +21,7 @@ export const createTask = async (
   payload: CreateTaskPayload
 ): Promise<Task> => {
   const res = await api.post("/tasks", payload);
-  return res.data.task || res.data; // Handle both response formats
+  return res.data.task || res.data;
 };
 
 export const deleteTask = async (taskId: string): Promise<void> => {
