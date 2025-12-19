@@ -8,19 +8,27 @@ export const registerUser = async (
   return res.data.user;
 };
 
-export const loginUser = async (
-  payload: LoginPayload
-): Promise<AuthUser> => {
-  const res = await api.post("/auth/login", payload);
-  return res.data.user;
-};
-
-
-export const getMe = async (): Promise<AuthUser> => {
-  const res = await api.get("/auth/me");
-  return res.data.user;
-};
-
 export const logoutUser = async (): Promise<void> => {
   await api.post("/auth/logout");
+};
+
+// In your frontend API calls
+export const loginUser = async (payload: LoginPayload): Promise<AuthUser> => {
+  const res = await api.post("/auth/login", payload);
+  
+  // Store token in localStorage as backup
+  if (res.data.token) {
+    localStorage.setItem('token', res.data.token);
+  }
+  
+  return res.data.user;
+};
+
+export const getMe = async (): Promise<AuthUser> => {
+  // Add Authorization header as fallback
+  const token = localStorage.getItem('token');
+  const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+  
+  const res = await api.get("/auth/me", config);
+  return res.data.user;
 };

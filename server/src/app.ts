@@ -9,17 +9,28 @@ export const app = express();
 
 const corsOptions = {
   origin: [
-    'https://crud-task-1-mp5j.onrender.com', // Your frontend URL
-    'http://localhost:3000', // For local development
+    'https://crud-task-1-mp5j.onrender.com',
+    'http://localhost:3000',
   ],
-  credentials: true, // Allow cookies/auth headers
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['set-cookie'] // Expose cookies to frontend
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['set-cookie'],
+  // Add these for better compatibility
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
-// Apply CORS middleware
 app.use(cors(corsOptions));
+
+// Explicit OPTIONS handler
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', 'https://crud-task-1-mp5j.onrender.com');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.sendStatus(204);
+});
 
 // Handle preflight requests explicitly
 app.options('*', cors(corsOptions));

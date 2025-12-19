@@ -26,28 +26,33 @@ export const login = async (req: Request, res: Response) => {
   res
   .cookie("token", token, {
     httpOnly: true,
-    sameSite: "lax",
-    secure: false ,
-     maxAge: 7 * 24 * 60 * 60 * 1000 
+    sameSite: "none",  // Changed from "lax" to "none"
+    secure: true,      // Changed from false to true
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    path: "/",
+    // domain: ".onrender.com" // Optional: Try if above doesn't work
   })
   .json({
     message: "Login successful",
-    user,
-    token
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email
+    },
+    token // Keep sending token in response for localStorage fallback
   });
 };
-
 
 export const logout = (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
-    secure: false 
+    sameSite: "none",  // Must match login settings
+    secure: true,
+    path: "/"
   });
 
   res.status(200).json({ message: "Logged out successfully" });
 };
-
 
 export const me = async (req: AuthRequest, res: Response) => {
   const user = await User.findById(req.userId).select("-password");
