@@ -10,3 +10,4 @@ exports.authRoutes.post("/register", auth_controller_1.register);
 exports.authRoutes.post("/login", auth_controller_1.login);
 exports.authRoutes.post("/logout", auth_controller_2.logout);
 exports.authRoutes.get("/me", auth_middleware_1.requireAuth, auth_controller_1.me);
+//# sourceMappingURL=auth.routes.js.map

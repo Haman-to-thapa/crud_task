@@ -31,3 +31,4 @@ const loginUser = async (email, password) => {
     return { user, token };
 };
 exports.loginUser = loginUser;
+//# sourceMappingURL=auth.service.js.map

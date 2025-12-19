@@ -20,3 +20,4 @@ const requireAuth = (req, res, next) => {
     }
 };
 exports.requireAuth = requireAuth;
+//# sourceMappingURL=auth.middleware.js.map

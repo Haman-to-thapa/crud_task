@@ -8,7 +8,6 @@ const createTaskHandler = async (req, res) => {
     try {
         const data = task_dto_1.createTaskSchema.parse(req.body);
         console.log("Validated data:", data);
-        // Create task
         const task = await (0, task_service_1.createTask)(data, req.userId);
         res.status(201).json({
             success: true,
@@ -18,7 +17,6 @@ const createTaskHandler = async (req, res) => {
     }
     catch (error) {
         console.error("Create task error:", error);
-        // Handle other errors
         res.status(400).json({
             success: false,
             message: error.message || "Failed to create task"
@@ -47,3 +45,4 @@ const getDashboardHandler = async (req, res) => {
     res.json(data);
 };
 exports.getDashboardHandler = getDashboardHandler;
+//# sourceMappingURL=task.controller.js.map
