@@ -11,18 +11,22 @@ dotenv.config()
 export const app = express();
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  "http://localhost:5173"
-].filter((origin): origin is string => Boolean(origin));
-
+  "http://localhost:5173",
+  "https://crud-task-1-mfom.onrender.com"
+];
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true
   })
 );
-
-
 
 
 app.use(express.json());

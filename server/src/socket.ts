@@ -1,19 +1,24 @@
 import { Server } from "socket.io";
 import http from "http";
-import { app } from "./app";
+import { app } from "./app"
 import dotenv from 'dotenv'
 
 dotenv.config()
 
-
 export const httpServer = http.createServer(app);
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://crud-task-1-mfom.onrender.com" 
+];
 
 export const io = new Server(httpServer, {
   cors: {
-    origin: process.env.FRONTEND_URL,
-    credentials: true
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST"]
   }
-})
+});
 
 io.on("connection", (socket) => {
   console.log(" Socket connected:", socket.id);
