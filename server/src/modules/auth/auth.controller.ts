@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { registerSchema, loginSchema } from "./auth.dto";
 import { registerUser, loginUser } from "./auth.service";
-import { AuthRequest } from "../../middlewares/auth.middleware";
+import { AuthRequest } from "../../types/auth-request"; 
 import { User } from "./user.model";
 
 

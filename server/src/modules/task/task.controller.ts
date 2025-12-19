@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { AuthRequest } from "../../middlewares/auth.middleware";
+import { AuthRequest } from "../../types/auth-request"; 
 import { createTaskSchema, updateTaskSchema } from "./task.dto";
 import {
   createTask,
